@@ -6,11 +6,12 @@ import { Toaster } from 'sonner';
 import AppLayout from '@/components/layout/AppLayout';
 import Home from '@/pages/Home';
 import Explorer from '@/pages/Explorer';
+import Carte from '@/pages/Carte';
 
 const queryClient = new QueryClient();
 
 function AppRoutes() {
-  const { isLoadingAuth, isAuthenticated } = useAuth();
+  const { isLoadingAuth } = useAuth();
 
   if (isLoadingAuth) {
     return (
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/explorer" element={<Explorer />} />
+        <Route path="/carte" element={<Carte />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

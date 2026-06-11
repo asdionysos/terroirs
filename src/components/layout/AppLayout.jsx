@@ -20,12 +20,13 @@ const navItems = [
 export default function AppLayout() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isMapPage = location.pathname === '/carte';
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/80 border-b border-border/50" style={{ height: '64px' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full">
+          <div className="flex items-center justify-between h-full">
             <Link to="/" className="flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
                 <Wine className="w-5 h-5 text-primary-foreground" />
@@ -104,7 +105,12 @@ export default function AppLayout() {
         </AnimatePresence>
       </header>
 
-      <main className="flex-1">
+      <main
+        style={{
+          height: isMapPage ? 'calc(100vh - 64px)' : 'auto',
+          overflow: isMapPage ? 'hidden' : 'auto',
+        }}
+      >
         <Outlet />
       </main>
 
